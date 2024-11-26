@@ -1,19 +1,15 @@
 import { createRouter } from "@/lib/create-app";
-import { createRoute, z } from "@hono/zod-openapi";
+import { StatusCodes } from "@/utils/http-status";
+import jsonContent from "@/utils/json-content";
+import { createRoute } from "@hono/zod-openapi";
+import { z } from "zod";
 
 const router = createRouter().openapi(
   createRoute({
     method: "get",
     path: "/health",
     responses: {
-      200: {
-        content: {
-          "text/plain": {
-            schema: z.string(),
-          },
-        },
-        description: "Server health check",
-      },
+      [StatusCodes.OK]: jsonContent(z.string(), "API health-check"),
     },
   }),
   (c) => {

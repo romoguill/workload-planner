@@ -1,7 +1,7 @@
+import { StatusCodes } from "@/utils/http-status";
+import type { Hook } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import { AppEnv, AppOpenAPI, ErrorResponse } from "../../shared/types";
-import type { Hook } from "@hono/zod-openapi";
-import { StatusCodes } from "http-status-codes";
 
 const configureOpenApi = (app: AppOpenAPI) => {
   app.doc("/doc", {
