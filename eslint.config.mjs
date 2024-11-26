@@ -1,5 +1,6 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
+import nodePlugin from "eslint-plugin-node";
 import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
 
@@ -10,4 +11,11 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
+  { plugins: { node: nodePlugin } },
+  {
+    rules: {
+      "no-console": "warn",
+      "node/no-process-env": "error",
+    },
+  },
 ];
