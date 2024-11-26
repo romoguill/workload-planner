@@ -1,9 +1,11 @@
-import { Hono } from "hono";
+import app from "@/app";
+import { serve } from "bun";
 
-const app = new Hono();
+const port = 3000;
 
-app.get("/", (c) => {
-  return c.text("hello");
+console.log(`Server is running on port http://localhost:${port}`);
+
+serve({
+  fetch: app.fetch,
+  port,
 });
-
-export default app;

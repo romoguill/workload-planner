@@ -6,8 +6,11 @@
     "lint:server": "eslint ./server "
   },
   "dependencies": {
+    "@hono/zod-openapi": "^0.18.0",
     "eslint-config-prettier": "^9.1.0",
-    "hono": "^4.6.12"
+    "hono": "^4.6.12",
+    "http-status-codes": "^2.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
