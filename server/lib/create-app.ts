@@ -3,9 +3,13 @@ import notFound from "@/utils/handlers/not-found";
 import onError from "@/utils/handlers/on-error";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { AppEnv } from "../../shared/types";
+import { validationHook } from "./open-api";
 
 export function createRouter() {
-  return new OpenAPIHono<AppEnv>({ strict: false });
+  return new OpenAPIHono<AppEnv>({
+    strict: false,
+    defaultHook: validationHook,
+  });
 }
 
 export default function createApp() {
