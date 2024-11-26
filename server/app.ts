@@ -1,23 +1,13 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
-import { logger } from "@/middlewares/logger";
-import notFound from "@/utils/handlers/not-found";
-import onError from "@/utils/handlers/on-error";
-import { Env as PinoEnv } from "hono-pino";
+import createApp from "@/lib/create-app";
+import configureOpenApi from "./lib/open-api";
 
-const app = new OpenAPIHono<PinoEnv>();
+const app = createApp();
 
-// Common middlewares
-app.use(logger());
+// Attach Open Api Config to app
+configureOpenApi(app);
 
-app.get("/", (c) => {
-  return c.text("hello");
+app.get("/health", (c) => {
+  return c.text("Server running");
 });
-
-app.get("/error", () => {
-  throw Error("asdfas");
-});
-
-app.onError(onError);
-app.notFound(notFound);
 
 export default app;

@@ -20,7 +20,7 @@ try {
     // eslint-disable-next-line no-console
     console.error("‼ Missing env variables.");
     // eslint-disable-next-line no-console
-    console.error(error.flatten());
+    console.error(error.flatten().fieldErrors);
   }
   process.exit(1);
 }
