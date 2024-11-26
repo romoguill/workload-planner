@@ -1,3 +1,4 @@
+import { apiReference } from "@scalar/hono-api-reference";
 import { AppOpenAPI } from "../../shared/types";
 
 const configureOpenApi = (app: AppOpenAPI) => {
@@ -8,6 +9,15 @@ const configureOpenApi = (app: AppOpenAPI) => {
       title: "Workload Planner API",
     },
   });
+
+  app.get(
+    "/reference",
+    apiReference({
+      spec: {
+        url: "/doc",
+      },
+    }),
+  );
 };
 
 export default configureOpenApi;

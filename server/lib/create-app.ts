@@ -4,9 +4,12 @@ import onError from "@/utils/handlers/on-error";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { AppEnv } from "../../shared/types";
 
-export default function createApp() {
-  const app = new OpenAPIHono<AppEnv>({ strict: false });
+export function createRouter() {
+  return new OpenAPIHono<AppEnv>({ strict: false });
+}
 
+export default function createApp() {
+  const app = createRouter();
   // Common middlewares
   app.use(logger());
 
