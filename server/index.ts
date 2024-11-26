@@ -1,8 +1,10 @@
 import app from "@/app";
 import { serve } from "bun";
+import env from "../shared/env";
 
-const port = Number(process.env.PORT || 3000);
+const port = Number(env.PORT || 3000);
 
+// eslint-disable-next-line no-console
 console.log(`Server is running on port http://localhost:${port}`);
 
 serve({
