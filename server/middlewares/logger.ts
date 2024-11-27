@@ -13,6 +13,14 @@ export function logger() {
     ),
     http: {
       reqId: () => crypto.randomUUID(),
+      onReqBindings: (c) => ({
+        // Overide default bindings, for some reason the default has no query params
+        req: {
+          url: c.req.url,
+          method: c.req.method,
+          headers: c.req.header(),
+        },
+      }),
     },
   });
 }

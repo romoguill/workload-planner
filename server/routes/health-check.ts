@@ -13,6 +13,7 @@ const router = createRouter().openapi(
     },
   }),
   (c) => {
+    console.log(c.req);
     return c.text("Server running");
   },
 );
