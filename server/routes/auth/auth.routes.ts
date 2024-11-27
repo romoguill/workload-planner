@@ -36,3 +36,15 @@ export const callbackRoute = createRoute({
   },
 });
 export type CallbackRoute = typeof callbackRoute;
+
+export const logoutRoute = createRoute({
+  path: "/auth/logout",
+  method: "get",
+  responses: {
+    [StatusCodes.PERMANENT_REDIRECT]: {
+      description: "Logout and redirect",
+      headers: z.object({ Location: z.string().url() }),
+    },
+  },
+});
+export type LogoutRoute = typeof logoutRoute;
