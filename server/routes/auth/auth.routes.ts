@@ -24,3 +24,15 @@ export const registerRoute = createRoute({
   },
 });
 export type RegisterRoute = typeof registerRoute;
+
+export const callbackRoute = createRoute({
+  path: "/auth/kinde_callback",
+  method: "get",
+  responses: {
+    [StatusCodes.PERMANENT_REDIRECT]: {
+      description: "Exclusive for Kinde callback",
+      headers: z.object({ Location: z.string().url() }),
+    },
+  },
+});
+export type CallbackRoute = typeof callbackRoute;

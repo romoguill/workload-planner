@@ -12,7 +12,7 @@ configureOpenApi(app);
 
 // Attach routes to app
 routes.forEach((route) => {
-  app.route("/", route);
+  app.route("/api/", route);
 });
 
 export default app;
