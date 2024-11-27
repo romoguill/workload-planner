@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.18.0",
+    "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
     "@scalar/hono-api-reference": "^0.5.161",
     "eslint-config-prettier": "^9.1.0",
     "hono": "^4.6.12",
