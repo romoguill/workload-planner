@@ -1,6 +1,6 @@
 import { kindeClient, sessionManager } from "@/lib/kinde";
 import { StatusCodes } from "@/utils/http-status";
-import { UserType } from "@kinde-oss/kinde-typescript-sdk";
+import type { UserType } from "@kinde-oss/kinde-typescript-sdk";
 import { createMiddleware } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
 import { AppEnv } from "../../shared/types";

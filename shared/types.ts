@@ -12,10 +12,11 @@ export interface AppEnv extends Env {
 export type AppOpenAPI = OpenAPIHono<AppEnv>;
 export type AppRouteHandler<T extends RouteConfig> = RouteHandler<T, AppEnv>;
 
-export type ErrorResponse = {
-  success: false;
-  message: string;
-};
+export const errorSchema = z.object({
+  success: z.boolean(),
+  message: z.string(),
+});
+export type ErrorResponse = z.infer<typeof errorSchema>;
 
 export const userSchema: z.ZodType<UserType> = z.object({
   email: z.string().email(),

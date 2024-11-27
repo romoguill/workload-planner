@@ -32,6 +32,7 @@ let store: Record<string, unknown> = {};
 
 export const sessionManager: SessionManager = {
   async getSessionItem(key: string) {
+    console.log({ store });
     return store[key];
   },
   async setSessionItem(key: string, value: unknown) {
