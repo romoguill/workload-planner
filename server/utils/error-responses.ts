@@ -46,3 +46,17 @@ export const errorResponses = {
     },
   },
 } satisfies Responses;
+
+export const getErrorResponses = (
+  codes: (
+    | typeof StatusCodes.BAD_REQUEST
+    | typeof StatusCodes.UNAUTHORIZED
+    | typeof StatusCodes.FORBIDDEN
+    | typeof StatusCodes.NOT_FOUND
+    | typeof StatusCodes.TOO_MANY_REQUESTS
+  )[],
+) => {
+  const responseAccum: Partial<typeof errorResponses> = {};
+  codes.forEach((code) => (responseAccum[code] = errorResponses[code]));
+  return responseAccum;
+};

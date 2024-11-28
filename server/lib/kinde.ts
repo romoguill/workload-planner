@@ -3,6 +3,9 @@ import {
   GrantType,
   SessionManager,
 } from "@kinde-oss/kinde-typescript-sdk";
+import { Context } from "hono";
+import { deleteCookie, getCookie, setCookie } from "hono/cookie";
+import { CookieOptions } from "hono/utils/cookie";
 import env from "../../shared/env";
 
 // Client for authorization code flow
@@ -28,20 +31,31 @@ export const kindeApiClient = createKindeServerClient(
   },
 );
 
-let store: Record<string, unknown> = {};
+const authCookieOptions: CookieOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "Lax",
+  maxAge: 60 * 60 * 24 * 120, // 120 days
+};
 
-export const sessionManager: SessionManager = {
+export const sessionManager = (c: Context): SessionManager => ({
   async getSessionItem(key: string) {
-    console.log({ store });
-    return store[key];
+    console.log({ key });
+    console.log(getCookie(c, key));
+    return getCookie(c, key);
   },
   async setSessionItem(key: string, value: unknown) {
-    store[key] = value;
+    // There are some cookies set by kind that are not the final auth_token and have special syntax
+    if (typeof value === "string") {
+      setCookie(c, key, value, authCookieOptions);
+    } else {
+      setCookie(c, key, JSON.stringify(value), authCookieOptions);
+    }
   },
   async removeSessionItem(key: string) {
-    delete store[key];
+    deleteCookie(c, key, authCookieOptions);
   },
   async destroySession() {
-    store = {};
+    deleteCookie(c, "auth_session", authCookieOptions);
   },
-};
+});

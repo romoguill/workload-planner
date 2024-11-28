@@ -13,7 +13,7 @@ export type AppOpenAPI = OpenAPIHono<AppEnv>;
 export type AppRouteHandler<T extends RouteConfig> = RouteHandler<T, AppEnv>;
 
 export const errorSchema = z.object({
-  success: z.boolean(),
+  success: z.literal(false),
   message: z.string(),
 });
 export type ErrorResponse = z.infer<typeof errorSchema>;
