@@ -19,9 +19,11 @@
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/bun": "latest",
+    "bun-bagel": "^1.1.0",
     "eslint": "^9.15.0",
     "eslint-plugin-node": "^11.1.0",
     "globals": "^15.12.0",
+    "msw": "^2.6.6",
     "prettier": "^3.3.3",
     "typescript-eslint": "^8.16.0"
   }

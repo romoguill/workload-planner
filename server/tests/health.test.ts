@@ -1,8 +1,8 @@
 import { createTestApp } from "@/lib/create-app";
 import router from "@/routes/health-check";
-import { expect, describe, it } from "bun:test";
+import { describe, expect, it } from "bun:test";
 
-describe("Auth", () => {
+describe("Health check", () => {
   it("responds with 200 and 'Server running'", async () => {
     const testRouter = createTestApp(router);
     const response = await testRouter.request("/health");
