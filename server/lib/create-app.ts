@@ -2,7 +2,7 @@ import { logger } from "@/middlewares/logger";
 import notFound from "@/utils/handlers/not-found";
 import onError from "@/utils/handlers/on-error";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { AppEnv } from "../../shared/types";
+import { AppEnv, AppOpenAPI } from "../../shared/types";
 import { validationHook } from "./open-api";
 
 export function createRouter() {
@@ -22,4 +22,10 @@ export default function createApp() {
   app.notFound(notFound);
 
   return app;
+}
+
+export function createTestApp(router: AppOpenAPI) {
+  const testApp = createApp();
+  testApp.route("/", router);
+  return testApp;
 }

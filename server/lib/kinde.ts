@@ -40,8 +40,6 @@ const authCookieOptions: CookieOptions = {
 
 export const sessionManager = (c: Context): SessionManager => ({
   async getSessionItem(key: string) {
-    console.log({ key });
-    console.log(getCookie(c, key));
     return getCookie(c, key);
   },
   async setSessionItem(key: string, value: unknown) {
